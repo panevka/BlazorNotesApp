@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "I0eLJtQG400=",
+  "success": true,
+  "projectFilePath": "/home/shef/dev/projects/BlazorNotesApp/BlazorNotesApp/BlazorNotesApp.csproj",
+  "expectedPackageFiles": [
+    "/home/shef/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.15/microsoft.aspnetcore.app.ref.8.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}
