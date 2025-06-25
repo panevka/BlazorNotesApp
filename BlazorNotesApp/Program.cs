@@ -1,10 +1,15 @@
+using BlazorNotesApp.BlazorNotesAppContext;
 using BlazorNotesApp.Components;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("BlazorNotesApp");
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddDbContextFactory<NoteDataContext>(options => options.UseSqlite(connectionString));
 
 var app = builder.Build();
 
