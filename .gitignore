@@ -1,0 +1,7 @@
+.idea/
+bin/
+obj/
+
+BlazorNotesApp/.idea/
+BlazorNotesApp/bin/
+BlazorNotesApp/obj/
