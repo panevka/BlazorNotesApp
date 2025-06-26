@@ -8,7 +8,7 @@ public interface INoteService
     
     Task<Note> GetNoteById(int id);
     
-    bool deleteNote(int id);
+    Task<bool> DeleteNote(int id);
     
     Task<bool> UpdateNote(Note note);
     

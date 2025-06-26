@@ -28,9 +28,11 @@ public class NoteServiceImpl  : INoteService
         return _context?.Notes.Find(id);
     }
 
-    public bool deleteNote(int id)
+    public async Task<bool> DeleteNote(int id)
     {
-        throw new NotImplementedException();
+        _context ??= await _contextFactory.CreateDbContextAsync();
+        _context.Notes.Where(n => n.Id == id).ExecuteDeleteAsync();
+        return true;
     }
 
     public async Task<bool> UpdateNote(Note note)
