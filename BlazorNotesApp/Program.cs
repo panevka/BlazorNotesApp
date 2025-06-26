@@ -1,5 +1,7 @@
 using BlazorNotesApp.BlazorNotesAppContext;
 using BlazorNotesApp.Components;
+using BlazorNotesApp.Services;
+using BlazorNotesApp.Services.Impl;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("BlazorNotesApp
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddDbContextFactory<NoteDataContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddScoped<INoteService, NoteServiceImpl>();
 
 var app = builder.Build();
 
