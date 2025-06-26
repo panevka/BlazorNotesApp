@@ -1,15 +1,16 @@
 @page "/createNote"
 <h3>Create note</h3>
 
-<form >
+<form>
     <div class="form-floating mb-3">
         <input type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
         <label for="floatingInput">Title</label>
     </div>
     <div class="form-floating">
-    <textarea class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
-    <label for="floatingTextarea">Comments</label>
+        <textarea class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
+        <label for="floatingTextarea">Comments</label>
     </div>
+    <button class="btn btn-primary mt-3" type="submit">Submit</button>
 </form>
 
 @code {
