@@ -12,5 +12,5 @@ public interface INoteService
     
     bool updateNote(Note note);
     
-    List<Note> getAllNotes();
+    Task<List<Note>> GetAllNotes();
 }

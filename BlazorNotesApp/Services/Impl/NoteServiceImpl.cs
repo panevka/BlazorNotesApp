@@ -37,8 +37,9 @@ public class NoteServiceImpl  : INoteService
         throw new NotImplementedException();
     }
 
-    public List<Note> getAllNotes()
+    public async Task<List<Note>> GetAllNotes()
     {
-        throw new NotImplementedException();
+        _context ??= await _contextFactory.CreateDbContextAsync();
+        return _context?.Notes.ToList();
     }
 }
