@@ -15,7 +15,7 @@ public class NoteServiceImpl  : INoteService
         _contextFactory = contextFactory;
     }
     
-    public async Task createNote(Note note)
+    public async Task CreateNote(Note note)
     {
         _context ??= await _contextFactory.CreateDbContextAsync();
         _context?.Notes.Add(note);
