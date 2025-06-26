@@ -1,0 +1,37 @@
+@page "/updateNote/{Id:int}"
+@using BlazorNotesApp.Models
+@using BlazorNotesApp.Services
+@inject INoteService NoteService
+
+<h3>Update Note</h3>
+
+@if (_currentNote == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <form>
+        <div class="form-floating mb-3">
+            <input @bind="_currentNote.Title" type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
+            <label for="floatingInput">Title</label>
+        </div>
+        <div class="form-floating">
+            <textarea @bind="_currentNote.Content" class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
+            <label for="floatingTextarea">Content</label>
+        </div>
+    </form>
+}
+<h4></h4>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Note? _currentNote;
+    protected override async Task OnInitializedAsync()
+    {
+        _currentNote = await NoteService.GetNoteById(Id);
+    }
+
+}
