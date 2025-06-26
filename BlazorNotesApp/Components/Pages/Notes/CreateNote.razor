@@ -1,18 +1,31 @@
 @page "/createNote"
+@rendermode InteractiveServer
+@using BlazorNotesApp.Models
+@using BlazorNotesApp.Services
+@using BlazorNotesApp.Services.Impl
+@inject INoteService NoteService
+
 <h3>Create note</h3>
 
 <form>
     <div class="form-floating mb-3">
-        <input type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
+        <input @bind="_newNote.Title" type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
         <label for="floatingInput">Title</label>
     </div>
     <div class="form-floating">
-        <textarea class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
+        <textarea @bind="_newNote.Content" class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
         <label for="floatingTextarea">Comments</label>
     </div>
-    <button class="btn btn-primary mt-3" type="submit">Submit</button>
-</form>
+    <button @onclick="AddNote" class="btn btn-primary mt-3" type="button">Submit</button>
+    </form>
 
 @code {
+    private Note _newNote = new();
     
+    private async Task AddNote()
+    {
+        _newNote.CreatedAt = DateTime.UtcNow;
+        await NoteService.CreateNote(_newNote);
+        _newNote = new();
+    }
 }
