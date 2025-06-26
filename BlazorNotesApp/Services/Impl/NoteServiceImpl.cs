@@ -33,9 +33,12 @@ public class NoteServiceImpl  : INoteService
         throw new NotImplementedException();
     }
 
-    public bool updateNote(Note note)
+    public async Task<bool> UpdateNote(Note note)
     {
-        throw new NotImplementedException();
+        _context ??= await _contextFactory.CreateDbContextAsync();
+        _context.Entry(note).State = EntityState.Modified;
+        int affected = await _context.SaveChangesAsync();
+        return affected > 0;
     }
 
     public async Task<List<Note>> GetAllNotes()

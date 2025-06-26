@@ -10,7 +10,7 @@ public interface INoteService
     
     bool deleteNote(int id);
     
-    bool updateNote(Note note);
+    Task<bool> UpdateNote(Note note);
     
     Task<List<Note>> GetAllNotes();
 }
