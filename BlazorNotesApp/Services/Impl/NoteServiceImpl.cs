@@ -22,9 +22,10 @@ public class NoteServiceImpl  : INoteService
         await _context.SaveChangesAsync(); 
     }
 
-    public Note getNote(int id)
+    public async Task<Note> GetNoteById(int id)
     {
-        throw new NotImplementedException();
+        _context ??= await _contextFactory.CreateDbContextAsync();
+        return _context?.Notes.Find(id);
     }
 
     public bool deleteNote(int id)

@@ -6,7 +6,7 @@ public interface INoteService
 {
     Task CreateNote(Note note);
     
-    Note getNote(int id);
+    Task<Note> GetNoteById(int id);
     
     bool deleteNote(int id);
     
