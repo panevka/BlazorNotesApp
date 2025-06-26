@@ -2,6 +2,7 @@
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
 @inject INoteService NoteService
+@rendermode InteractiveServer
 
 <h3>Show Notes</h3>
 
@@ -30,7 +31,7 @@
                     <td>@note.CreatedAt</td>
                     <td>
                         <button class="btn btn-primary m-1">Update</button>
-                        <button class="btn btn-danger m-1">Delete</button>
+                        <button class="btn btn-danger m-1" @onclick="() => DeleteNote(note.Id)">Delete</button>
                     </td>
                 </tr>
             }
@@ -43,6 +44,17 @@
     protected override async Task OnInitializedAsync()
     {
         _notes = await NoteService.GetAllNotes();
+    }
+    
+    private async Task DeleteNote(int id)
+    {
+        await NoteService.DeleteNote(id);
+        
+        var noteToRemove = _notes?.FirstOrDefault(n => n.Id == id);
+        if (noteToRemove != null)
+        {
+            _notes!.Remove(noteToRemove);
+        }
     }
        
 }
