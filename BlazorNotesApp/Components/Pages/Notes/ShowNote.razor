@@ -1,6 +1,22 @@
-@page "/ShowNote"
+@page "/showNote/{Id:int}"
+@using BlazorNotesApp.Models
+@using BlazorNotesApp.Services
+@inject INoteService NoteService
+
 <h3>ShowNote</h3>
 
+<h4>Title: @_currentNote.Title</h4>
+<p>Created at: @_currentNote.CreatedAt</p>
+<p>Content:</p>
+<p>@_currentNote.Content</p>
 @code {
+    private Note? _currentNote;
     
+    [Parameter]
+    public int Id { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _currentNote = await NoteService.GetNoteById(Id);
+    }
 }
