@@ -1,5 +1,45 @@
 @page "/showNotes"
+@using BlazorNotesApp.Models
+@using BlazorNotesApp.Services
+@inject INoteService NoteService
+
 <h3>Show Notes</h3>
 
+    @if (_notes == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <table class="table table-primary">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Creation date</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            @foreach (Note note in _notes)
+            {
+                <tr>
+                    <td>@note.Id</td>
+                    <td>@note.Title</td>
+                    <td>@note.CreatedAt</td>
+                    <td></td>
+                </tr>
+            }
+        </table>
+    }
+    
 @code {
+    private List<Note>? _notes = new();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _notes = await NoteService.GetAllNotes();
+    }
+       
 }
