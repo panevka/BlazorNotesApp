@@ -4,7 +4,7 @@ namespace BlazorNotesApp.Services;
 
 public interface INoteService
 {
-    bool createNote(Note note);
+    Task createNote(Note note);
     
     Note getNote(int id);
     
