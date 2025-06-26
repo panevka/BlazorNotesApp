@@ -1,7 +1,8 @@
 @page "/updateNote/{Id:int}"
+@inject INoteService NoteService
+@rendermode InteractiveServer
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
-@inject INoteService NoteService
 
 <h3>Update Note</h3>
 
@@ -20,6 +21,7 @@ else
             <textarea @bind="_currentNote.Content" class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
             <label for="floatingTextarea">Content</label>
         </div>
+        <button @onclick="EditNote" class="btn btn-primary mt-3" type="button">Submit</button>
     </form>
 }
 <h4></h4>
@@ -29,9 +31,15 @@ else
     public int Id { get; set; }
 
     private Note? _currentNote;
+    
     protected override async Task OnInitializedAsync()
     {
         _currentNote = await NoteService.GetNoteById(Id);
+    }
+
+    private async Task EditNote()
+    {
+        await NoteService.UpdateNote(_currentNote);
     }
 
 }
