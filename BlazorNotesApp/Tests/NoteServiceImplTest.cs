@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace BlazorNotesApp;
 
 [TestFixture]
-public class Test
+public class NoteServiceImplTest
 {
     private SqliteConnection _connection;
     private DbContextOptions<NoteDataContext> _options;
