@@ -14,7 +14,7 @@
     }
     else
     {
-        <table class="table table-primary">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>ID</th>
@@ -25,36 +25,40 @@
             </thead>
             @foreach (Note note in _notes)
             {
+                <tbody>
                 <tr>
                     <td>@note.Id</td>
                     <td>@note.Title</td>
                     <td>@note.CreatedAt</td>
                     <td>
-                        <button class="btn btn-primary m-1">Update</button>
-                        <button class="btn btn-danger m-1" @onclick="() => DeleteNote(note.Id)">Delete</button>
+                        <button type="button" class="btn btn-primary m-1">View</button>
+                        <button type="button" class="btn btn-success m-1">Edit</button>
+                        <button @onclick="() => DeleteNote(note.Id)" type="button" class="btn btn-danger m-1">Delete</button>
                     </td>
                 </tr>
+                </tbody>
             }
         </table>
     }
     
 @code {
     private List<Note>? _notes = new();
-    
+
     protected override async Task OnInitializedAsync()
     {
         _notes = await NoteService.GetAllNotes();
     }
-    
+
     private async Task DeleteNote(int id)
     {
         await NoteService.DeleteNote(id);
-        
+
         var noteToRemove = _notes?.FirstOrDefault(n => n.Id == id);
         if (noteToRemove != null)
         {
             _notes!.Remove(noteToRemove);
         }
     }
-       
+
 }
+
