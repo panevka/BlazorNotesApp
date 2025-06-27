@@ -21,7 +21,7 @@
 
 @code
 {
-    private string _currentTheme = "light-theme";
+    private string _currentTheme;
 
     private async void ToggleTheme()
     {
@@ -58,11 +58,11 @@
         try
         {
             string storedTheme = await RetrieveData("theme");
-            Debug.WriteLine(storedTheme);
+            _currentTheme = storedTheme;
         }
         catch
         {
-            Debug.WriteLine("none");
+            _currentTheme = "light-theme";
         }
     }
 
