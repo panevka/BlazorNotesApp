@@ -3,6 +3,7 @@
 @using BlazorNotesApp.Services
 @inject INoteService NoteService
 @rendermode InteractiveServer
+@inject NavigationManager _nav
 
 <h3>Show Notes</h3>
 
@@ -31,7 +32,7 @@
                     <td>@note.Title</td>
                     <td>@note.CreatedAt</td>
                     <td>
-                        <button type="button" class="btn btn-primary m-1">View</button>
+                        <button @onclick="() => ViewNote(note.Id)"type="button" class="btn btn-primary m-1">View</button>
                         <button type="button" class="btn btn-success m-1">Edit</button>
                         <button @onclick="() => DeleteNote(note.Id)" type="button" class="btn btn-danger m-1">Delete</button>
                     </td>
@@ -58,6 +59,11 @@
         {
             _notes!.Remove(noteToRemove);
         }
+    }
+    
+    private void ViewNote(int id)
+    {
+        _nav.NavigateTo($"/showNote/{id}");
     }
 
 }
