@@ -36,7 +36,13 @@ header {
 }
 
 main{
-    background-color: yellow;
     grid-row: 3 / -1;
     grid-column: 4 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#carouselExampleSlidesOnly{
+    height: 100%;
 }
