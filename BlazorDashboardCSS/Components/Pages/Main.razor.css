@@ -104,3 +104,7 @@ main{
 .btn-outline:hover::before {
     transform: scale(1);
 }
+
+input:focus-visible {
+    outline: 2px solid blue;
+}
