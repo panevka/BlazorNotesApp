@@ -1,0 +1,1 @@
+SELECT Departments.DepartmentID, Departments.DepartmentName, TOTAL(Employees.Salary) AS CombinedSalaries FROM Departments JOIN Employees ON Departments.DepartmentID = Employees.DepartmentID GROUP BY Departments.DepartmentID HAVING CombinedSalaries > 150000 ORDER BY CombinedSalaries DESC;

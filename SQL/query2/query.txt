@@ -1,0 +1,1 @@
+SELECT Departments.DepartmentName, COUNT(*) AS EmployeesNumber FROM Departments JOIN Employees ON Departments.DepartmentID = Employees.DepartmentID GROUP BY Departments.DepartmentID ORDER BY EmployeesNumber DESC; 

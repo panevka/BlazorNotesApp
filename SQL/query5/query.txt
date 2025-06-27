@@ -1,0 +1,1 @@
+SELECT Employees.FirstName, Employees.LastName FROM Employees WHERE Employees.Salary > (SELECT AVG(Employees.Salary) FROM Employees)

@@ -1,0 +1,4 @@
+WITH AvgSalaryByDepartment AS (
+SELECT Departments.DepartmentID, Departments.DepartmentName, AVG(Employees.Salary) AS AverageSalary FROM Departments JOIN Employees ON Departments.DepartmentID = Employees.DepartmentID GROUP BY Departments.DepartmentID
+)
+SELECT Employees.EmployeeID, Employees.FirstName, Employees.LastName, AvgSalaryByDepartment.DepartmentName, Employees.Salary FROM Employees JOIN AvgSalaryByDepartment ON Employees.DepartmentID = AvgSalaryByDepartment.DepartmentID WHERE Employees.Salary > AverageSalary

@@ -1,0 +1,1 @@
+SELECT Projects.ProjectID, Projects.ProjectName, COUNT(EmployeeProjects.EmployeeID) as EmployeesNumber FROM Projects LEFT JOIN EmployeeProjects ON Projects.ProjectID = EmployeeProjects.ProjectID GROUP BY Projects.ProjectID
