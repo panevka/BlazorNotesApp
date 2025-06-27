@@ -4,8 +4,11 @@
 
 <div id="container" class="@_currentTheme">
     <header>
-        Header Content
         
+        <a href="#main" class="skip-link">Przejdź do treści głównej</a>
+        
+        <p>Header Content</p>
+
         <button @onclick="ToggleTheme">Toggle theme</button>
     </header>
 
@@ -16,7 +19,7 @@
         </button>
     </aside>
 
-    <main>
+    <main id="main">
         <div class="carousel">
             <img src="https://picsum.photos/800/400?1" alt="First slide">
             <img src="https://picsum.photos/800/400?2" alt="Second slide">
