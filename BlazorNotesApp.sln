@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNotesApp", "BlazorNotesApp\BlazorNotesApp.csproj", "{0C79452D-4FDC-4350-A9E6-4935845A980D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnitTests", "NUnitTests", "{BA31FD9D-F715-46B2-84F4-7E4B90137C29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
