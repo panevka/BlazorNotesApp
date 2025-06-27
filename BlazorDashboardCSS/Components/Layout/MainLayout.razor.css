@@ -1,0 +1,27 @@
+#container{
+    margin:0;
+    background-color: orange;
+    display:grid;
+    height:100vh;
+    width:100vw;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+}
+
+header {
+    background-color: red;
+    grid-row: 1 / 3;
+    grid-column: 1 / 13;
+}
+
+#left-panel{
+    background-color: blue;
+    grid-row: 3 / -1;
+    grid-column: 1 / 4;
+}
+
+main{
+    background-color: yellow;
+    grid-row: 3 / -1;
+    grid-column: 4 / -1;
+}
