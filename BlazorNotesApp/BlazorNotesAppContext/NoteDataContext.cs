@@ -5,16 +5,11 @@ namespace BlazorNotesApp.BlazorNotesAppContext;
 
 public class NoteDataContext : DbContext
 {
-    protected readonly IConfiguration _configuration;
+    protected readonly DbContextOptions<NoteDataContext> options;
     
-    public NoteDataContext(IConfiguration configuration)
+    public NoteDataContext(DbContextOptions<NoteDataContext> options) : base(options)
     {
-        _configuration = configuration;
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite(_configuration.GetConnectionString("BlazorNotesApp"));
+        this.options = options;
     }
     
     public DbSet<Note> Notes { get; set; }
