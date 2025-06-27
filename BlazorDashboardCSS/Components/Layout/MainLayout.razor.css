@@ -1,3 +1,15 @@
+.light-theme {
+    --background-color: #2ec4b6;
+    --secondary-color: #cbf3f0;
+    --text-color: white;
+}
+
+.dark-theme {
+    --background-color: #20504e;
+    --secondary-color: #386775;
+    --text-color: white;
+}
+
 #container{
     margin:0;
     background-color: orange;
