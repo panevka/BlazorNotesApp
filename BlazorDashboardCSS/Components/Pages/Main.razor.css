@@ -78,3 +78,29 @@ main{
     41% { opacity: 0; }
     100% { opacity: 0; }
 }
+
+.btn-outline {
+    width: 150px;
+    height: 50px;
+    margin: 20px;
+    background-color:transparent;
+    border: 1px solid lightcoral;
+    position: relative;
+}
+
+.btn-outline::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    z-index: 2;
+    border: 2px solid white;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform 1s ease;
+}
+
+.btn-outline:hover::before {
+    transform: scale(1);
+}
