@@ -33,7 +33,7 @@
                     <td>@note.CreatedAt</td>
                     <td>
                         <button @onclick="() => ViewNote(note.Id)"type="button" class="btn btn-primary m-1">View</button>
-                        <button type="button" class="btn btn-success m-1">Edit</button>
+                        <button @onclick="() => EditNote(note.Id)" type="button" class="btn btn-success m-1">Edit</button>
                         <button @onclick="() => DeleteNote(note.Id)" type="button" class="btn btn-danger m-1">Delete</button>
                     </td>
                 </tr>
@@ -64,6 +64,11 @@
     private void ViewNote(int id)
     {
         _nav.NavigateTo($"/showNote/{id}");
+    }
+    
+    private void EditNote(int id)
+    {
+        _nav.NavigateTo($"/updateNote/{id}");
     }
 
 }
