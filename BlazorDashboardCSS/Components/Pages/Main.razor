@@ -1,0 +1,40 @@
+﻿@using BlazorDashboardCSS.Components.Models
+@page "/main"
+@rendermode InteractiveServer
+
+<div id="container" class="@_globalCss">
+    <header>
+        Header Content
+        
+        <button>Toggle theme</button>
+    </header>
+
+    <aside id="left-panel">
+        Left Panel Content
+    </aside>
+
+    <main>
+       
+    </main>
+</div>
+
+@code
+{
+    private Theme _themeSetting;
+    private string _globalCss;
+
+    private void ToggleTheme()
+    {
+        if (_themeSetting == Theme.Light)
+        {
+            _themeSetting = Theme.Dark;
+            _globalCss = "light-theme";
+        }
+        else
+        {
+            _themeSetting = Theme.Light;
+            _globalCss = "dark-theme";
+        }
+            
+    }
+}
