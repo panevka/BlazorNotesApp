@@ -1,4 +1,5 @@
 @using BlazorNotesApp.Models
+@rendermode InteractiveServer
 
 <form>
     <div class="form-floating mb-3">
@@ -24,7 +25,6 @@
 
     private async Task SendValueToParent()
     {
-        _newNote.CreatedAt = DateTime.UtcNow;
         await OnSubmit.InvokeAsync(_newNote);
     }
 
@@ -32,9 +32,7 @@
     {
         if (PredefinedNote != null)
         {
-            _newNote.Title = PredefinedNote.Title;
-            _newNote.Content = PredefinedNote.Content;
-            _newNote.CreatedAt = PredefinedNote.CreatedAt;
+            _newNote = PredefinedNote;
         }
     }
 
