@@ -1,0 +1,28 @@
+@using BlazorNotesApp.Models
+
+<form>
+    <div class="form-floating mb-3">
+        <input @bind="_newNote.Title" type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
+        <label for="floatingInput">Title</label>
+    </div>
+    <div class="form-floating">
+        <textarea @bind="_newNote.Content" class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
+        <label for="floatingTextarea">Content</label>
+    </div>
+    <button @onclick="SendValueToParent" class="btn btn-primary mt-3" type="button">Submit</button>
+</form>
+
+@code {
+
+    private Note _newNote = new Note();
+    
+    [Parameter]
+    public EventCallback<Note> OnSubmit { get; set; }
+
+    private async Task SendValueToParent()
+    {
+        _newNote.CreatedAt = DateTime.UtcNow;
+        await OnSubmit.InvokeAsync(_newNote);
+    }
+
+}
