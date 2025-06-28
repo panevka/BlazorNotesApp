@@ -27,9 +27,10 @@ else
         _currentNote = await NoteService.GetNoteById(Id);
     }
 
-    private async Task EditNote()
+    private async Task EditNote(Note updatedNote)
     {
-        await NoteService.UpdateNote(_currentNote);
+        updatedNote.CreatedAt = DateTime.UtcNow;
+        await NoteService.UpdateNote(updatedNote);
     }
 
 }
