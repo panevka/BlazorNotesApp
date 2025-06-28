@@ -1,0 +1,6 @@
+#note-content{
+    width: 500px;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

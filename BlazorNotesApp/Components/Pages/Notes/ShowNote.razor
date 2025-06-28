@@ -4,11 +4,13 @@
 @using BlazorNotesApp.Components.Shared
 @inject INoteService NoteService
 
+
 <Heading Title="Display note"></Heading>
 
 <h3>@_currentNote.Title</h3>
 <p><i>Created at: @_currentNote.CreatedAt</i></p>
-<p>@_currentNote.Content</p>
+<p id="note-content">@_currentNote.Content</p>
+
 @code {
     private Note? _currentNote;
     
