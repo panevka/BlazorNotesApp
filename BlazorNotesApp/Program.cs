@@ -1,7 +1,10 @@
 using BlazorNotesApp.BlazorNotesAppContext;
 using BlazorNotesApp.Components;
+using BlazorNotesApp.Models;
 using BlazorNotesApp.Services;
 using BlazorNotesApp.Services.Impl;
+using BlazorNotesApp.Utils;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddDbContextFactory<NoteDataContext>(options => options.UseSqlite(connectionString));
 builder.Services.AddScoped<INoteService, NoteServiceImpl>();
+
+builder.Services.AddTransient<IValidator<Note>, NoteValidator>();
+
 
 var app = builder.Build();
 
