@@ -13,6 +13,7 @@
     
     private async Task AddNote(Note newNote)
     {
+        newNote.CreatedAt = DateTime.UtcNow;
         await NoteService.CreateNote(newNote);
     }
 }

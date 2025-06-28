@@ -1,0 +1,9 @@
+#top-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#create-button {
+    height: 20%;
+}

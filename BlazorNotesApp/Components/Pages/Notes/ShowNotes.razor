@@ -6,8 +6,10 @@
 @rendermode InteractiveServer
 @inject NavigationManager _nav
 
+<div id="top-container">
 <Heading Title="Dashboard"></Heading>
-
+<button @onclick="CreateNote" id="create-button" class="btn btn-primary"> Create new note</button>
+</div>
     @if (_notes == null)
     {
         <p>
@@ -70,6 +72,11 @@
     private void EditNote(int id)
     {
         _nav.NavigateTo($"/updateNote/{id}");
+    }
+    
+    private void CreateNote()
+    {
+        _nav.NavigateTo($"/createNote");
     }
 
 }
