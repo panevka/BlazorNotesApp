@@ -6,9 +6,8 @@
 
 <Heading Title="Display note"></Heading>
 
-<h4>Title: @_currentNote.Title</h4>
-<p>Created at: @_currentNote.CreatedAt</p>
-<p>Content:</p>
+<h3>@_currentNote.Title</h3>
+<p><i>Created at: @_currentNote.CreatedAt</i></p>
 <p>@_currentNote.Content</p>
 @code {
     private Note? _currentNote;
