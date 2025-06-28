@@ -14,6 +14,11 @@
 else
 {
     <NoteForm OnSubmit="EditNote" PredefinedNote="_currentNote"></NoteForm>
+    @if (ShowAlert)
+    {
+        <Alert Success="@Success"></Alert>
+    }
+    
 }
 
 @code {
@@ -21,6 +26,8 @@ else
     public int Id { get; set; }
 
     private Note? _currentNote;
+    private bool Success { get; set; }
+    private bool ShowAlert { get; set; }
     
     protected override async Task OnInitializedAsync()
     {
@@ -29,8 +36,19 @@ else
 
     private async Task EditNote(Note updatedNote)
     {
-        updatedNote.CreatedAt = DateTime.UtcNow;
-        await NoteService.UpdateNote(updatedNote);
+        try
+        {
+            updatedNote.CreatedAt = DateTime.UtcNow;
+            await NoteService.UpdateNote(updatedNote);
+            ShowAlert = true;
+            Success = true;
+        }
+        catch
+        {
+            ShowAlert = true;
+            Success = false;
+        }
+        
     }
 
 }
