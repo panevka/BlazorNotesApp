@@ -7,8 +7,6 @@ public class NoteValidator : AbstractValidator<Note>
 {
     public NoteValidator()
     {
-        RuleFor(x => x.Id)
-            .GreaterThan(0);
         RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Title is required")
             .NotNull().WithMessage("Title is required")
