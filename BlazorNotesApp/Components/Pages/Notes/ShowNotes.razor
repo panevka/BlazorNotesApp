@@ -1,11 +1,12 @@
 @page "/"
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
+@using BlazorNotesApp.Components.Shared
 @inject INoteService NoteService
 @rendermode InteractiveServer
 @inject NavigationManager _nav
 
-<h3>Show Notes</h3>
+<Heading Title="Dashboard"></Heading>
 
     @if (_notes == null)
     {

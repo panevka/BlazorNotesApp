@@ -1,9 +1,10 @@
 @page "/showNote/{Id:int}"
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
+@using BlazorNotesApp.Components.Shared
 @inject INoteService NoteService
 
-<h3>ShowNote</h3>
+<Heading Title="Display note"></Heading>
 
 <h4>Title: @_currentNote.Title</h4>
 <p>Created at: @_currentNote.CreatedAt</p>

@@ -2,10 +2,10 @@
 @rendermode InteractiveServer
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
-@using BlazorNotesApp.Services.Impl
+@using BlazorNotesApp.Components.Shared
 @inject INoteService NoteService
 
-<h3>Create note</h3>
+<Heading Title="Add note"></Heading>
 
 <form>
     <div class="form-floating mb-3">
