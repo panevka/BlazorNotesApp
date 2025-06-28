@@ -1,6 +1,7 @@
 using BlazorNotesApp.BlazorNotesAppContext;
 using BlazorNotesApp.Models;
 using BlazorNotesApp.Services.Impl;
+using BlazorNotesApp.Utils;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -13,6 +14,7 @@ public class NoteServiceImplTest
 {
     private SqliteConnection _connection;
     private DbContextOptions<NoteDataContext> _options;
+    private NoteValidator _validator;
 
     [SetUp]
     public void Setup()
@@ -54,7 +56,7 @@ public class NoteServiceImplTest
         }
         
         NoteServiceImpl
-            noteService = new NoteServiceImpl(context, mockDbFactory.Object);
+            noteService = new NoteServiceImpl(context, mockDbFactory.Object, _validator);
 
         for (int i = 0; i < arrLength; i++)
         {

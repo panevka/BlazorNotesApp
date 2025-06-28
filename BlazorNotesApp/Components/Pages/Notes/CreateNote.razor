@@ -1,10 +1,15 @@
 @page "/createNote"
 @rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
 @using BlazorNotesApp.Components.Shared
+@using NUnit.Framework.Internal
 @inject INoteService NoteService
 @inject NavigationManager _nav
+@using FluentValidation;
+@using FluentValidation.Results;
+@using ValidationException = FluentValidation.ValidationException
 
 <Heading Title="Add note"></Heading>
 
@@ -12,13 +17,14 @@
 
 @if (ShowAlert)
 {
-  <Alert Success=@Success></Alert>
+  <Alert Success=@Success Content="@AlertContent"></Alert>
 }
 
 @code {
 
     private bool ShowAlert { get; set; }
     private bool Success { get; set; }
+    private string AlertContent { get; set; }
 
     private async Task AddNote(Note newNote)
     {
@@ -31,10 +37,21 @@
             await Task.Delay(1000);
             _nav.NavigateTo("/");
         }
-        catch
+        catch (ValidationException e)
         {
+            var allowedProperties = new[] { "Title", "Content" };
+
+            var relevantError = e.Errors
+                .Where(e => allowedProperties.Contains(e.PropertyName))
+                .FirstOrDefault();
+
+            AlertContent = $"Validation failed: {relevantError.PropertyName} - {relevantError.ErrorMessage}";
             ShowAlert = true;
-            Success = false;
+        }
+        catch (Exception e)
+        {
+            AlertContent = e.Message;
+            ShowAlert = true;
         }
         
     }
