@@ -1,0 +1,31 @@
+<div class="alert @AlertClass my-3" role="alert"> 
+    @AlertContent
+</div>
+
+@code {
+    private string AlertClass { get; set; }
+    private string AlertContent { get; set; }
+    
+    [Parameter]
+    public bool Success { get; set; }
+    
+    private void ToggleAlertSuccess(bool success)
+    {
+        if (success)
+        {
+            AlertContent = "New note added!";
+            AlertClass = "alert-success";
+        }
+        else
+        {
+            AlertContent = "Error occured";
+            AlertClass = "alert-danger";
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        ToggleAlertSuccess(Success);
+    }
+
+}

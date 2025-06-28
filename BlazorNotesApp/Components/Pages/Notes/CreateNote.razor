@@ -4,16 +4,40 @@
 @using BlazorNotesApp.Services
 @using BlazorNotesApp.Components.Shared
 @inject INoteService NoteService
+@inject NavigationManager _nav
 
 <Heading Title="Add note"></Heading>
 
 <NoteForm OnSubmit="AddNote"></NoteForm>
 
+@if (ShowAlert)
+{
+  <Alert Success=@Success></Alert>
+}
+
 @code {
-    
+
+    private bool ShowAlert { get; set; }
+    private bool Success { get; set; }
+
     private async Task AddNote(Note newNote)
     {
         newNote.CreatedAt = DateTime.UtcNow;
-        await NoteService.CreateNote(newNote);
+        try
+        {
+            await NoteService.CreateNote(newNote);
+            ShowAlert = true;
+            Success = true;
+            await Task.Delay(1000);
+            _nav.NavigateTo("/");
+        }
+        catch
+        {
+            ShowAlert = true;
+            Success = false;
+        }
+        
     }
+
+   
 }
