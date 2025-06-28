@@ -4,6 +4,7 @@
 @using BlazorNotesApp.Models
 @using BlazorNotesApp.Services
 @using BlazorNotesApp.Components.Shared
+@using FluentValidation
 
 <Heading Title="Edit note"></Heading>
 
@@ -16,7 +17,7 @@ else
     <NoteForm OnSubmit="EditNote" PredefinedNote="_currentNote"></NoteForm>
     @if (ShowAlert)
     {
-        <Alert Success="@Success"></Alert>
+        <Alert Success="@Success" Content="@AlertContent"></Alert>
     }
     
 }
@@ -28,6 +29,7 @@ else
     private Note? _currentNote;
     private bool Success { get; set; }
     private bool ShowAlert { get; set; }
+    private string AlertContent { get; set; }
     
     protected override async Task OnInitializedAsync()
     {
@@ -43,11 +45,22 @@ else
             ShowAlert = true;
             Success = true;
         }
-        catch
+        catch (ValidationException e)
         {
+            var allowedProperties = new[] { "Title", "Content" };
+
+            var relevantError = e.Errors
+                .Where(e => allowedProperties.Contains(e.PropertyName))
+                .FirstOrDefault();
+
+            AlertContent = $"Validation failed: {relevantError.PropertyName} - {relevantError.ErrorMessage}";
             ShowAlert = true;
-            Success = false;
         }
+            catch (Exception e)
+            {
+                AlertContent = e.Message;
+                ShowAlert = true;
+            }
         
     }
 
