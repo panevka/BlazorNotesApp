@@ -38,12 +38,16 @@ else
 
     private async Task EditNote(Note updatedNote)
     {
+        ShowAlert = false;
+        AlertContent = string.Empty;
         try
         {
             updatedNote.CreatedAt = DateTime.UtcNow;
             await NoteService.UpdateNote(updatedNote);
-            ShowAlert = true;
+            AlertContent = "Note modified successfully";
             Success = true;
+            ShowAlert = true;
+            
         }
         catch (ValidationException e)
         {
@@ -54,13 +58,14 @@ else
                 .FirstOrDefault();
 
             AlertContent = $"Validation failed: {relevantError.PropertyName} - {relevantError.ErrorMessage}";
+            Success = false;
             ShowAlert = true;
         }
-            catch (Exception e)
-            {
-                AlertContent = e.Message;
-                ShowAlert = true;
-            }
+        catch (Exception e)
+        {
+            AlertContent = e.Message;
+            ShowAlert = true;
+        }
         
     }
 

@@ -32,6 +32,7 @@
         try
         {
             await NoteService.CreateNote(newNote);
+            AlertContent = "New note added!";
             ShowAlert = true;
             Success = true;
             await Task.Delay(1000);
@@ -50,7 +51,7 @@
         }
         catch (Exception e)
         {
-            AlertContent = e.Message;
+            AlertContent = "Error occured!" + e.Message;
             ShowAlert = true;
         }
         
