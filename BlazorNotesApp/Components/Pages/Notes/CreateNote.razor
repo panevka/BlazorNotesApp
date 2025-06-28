@@ -7,25 +7,12 @@
 
 <Heading Title="Add note"></Heading>
 
-<form>
-    <div class="form-floating mb-3">
-        <input @bind="_newNote.Title" type="text" class="note-title form-control" placeholder="Note title" id="floatingInput"/>
-        <label for="floatingInput">Title</label>
-    </div>
-    <div class="form-floating">
-        <textarea @bind="_newNote.Content" class="note-content form-control" placeholder="This note is about..." id="floatingTextarea"/>
-        <label for="floatingTextarea">Content</label>
-    </div>
-    <button @onclick="AddNote" class="btn btn-primary mt-3" type="button">Submit</button>
-    </form>
+<NoteForm OnSubmit="AddNote"></NoteForm>
 
 @code {
-    private Note _newNote = new();
     
-    private async Task AddNote()
+    private async Task AddNote(Note newNote)
     {
-        _newNote.CreatedAt = DateTime.UtcNow;
-        await NoteService.CreateNote(_newNote);
-        _newNote = new();
+        await NoteService.CreateNote(newNote);
     }
 }
