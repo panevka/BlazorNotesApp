@@ -26,13 +26,16 @@ header {
     grid-column: 1 / 13;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-around;
 }
 
 #left-panel{
     background-color: blue;
     grid-row: 3 / -1;
     grid-column: 1 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hamburger-menu {
