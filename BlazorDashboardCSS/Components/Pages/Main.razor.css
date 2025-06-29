@@ -71,8 +71,8 @@ main{
 
 .carousel {
     position: relative;
-    width: 800px;
-    height: 400px;
+    width: 80%;
+    height: 50%;
     overflow: hidden;
 }
 
@@ -80,8 +80,8 @@ main{
     position: absolute;
     top: 0;
     left: 0;
-    width: 800px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     animation: fade 12s infinite;
     animation-delay: 4s;
