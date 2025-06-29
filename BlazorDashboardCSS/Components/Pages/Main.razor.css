@@ -29,7 +29,7 @@ header {
     justify-content: space-around;
 }
 
-#left-panel{
+.left-panel{
     background-color: blue;
     grid-row: 3 / -1;
     grid-column: 1 / 4;
@@ -45,6 +45,8 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    border: none;
 }
 .hamburger-menu > span {
     width: 100%;
@@ -55,8 +57,13 @@ header {
 }
 
 @media (max-width: 800px) {
-    #left-panel{
+    .left-panel{
         display: none;
+    }
+    .expanded-panel{
+        display: flex;
+        grid-column: 1 / -1;
+        z-index: 2;
     }
     .hamburger-menu {
         display: flex;

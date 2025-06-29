@@ -6,7 +6,7 @@
 <div id="container" class="@_currentTheme">
     
     <header>
-        <button class="hamburger-menu">
+        <button class="hamburger-menu" @onclick="TogglePanel">
             <span></span>
             <span></span>
             <span></span>
@@ -17,7 +17,7 @@
         <button @onclick="ToggleTheme">Toggle theme</button>
     </header>
 
-    <aside id="left-panel">
+    <aside class="@_leftPanelClasses">
         <button class="btn-outline" type="button">
             Outline Button
         </button>
@@ -35,6 +35,7 @@
 @code
 {
     private string _currentTheme;
+    private string _leftPanelClasses = "left-panel";
 
     private async void ToggleTheme()
     {
@@ -48,6 +49,18 @@
         }
 
         await StoreData("theme", _currentTheme);
+    }
+
+    private async void TogglePanel()
+    {
+        if (_leftPanelClasses == "left-panel")
+        {
+            _leftPanelClasses = "left-panel expanded-panel";
+        }
+        else
+        {
+            _leftPanelClasses = "left-panel";
+        }
     }
     
     private async Task StoreData(string key, string value)
